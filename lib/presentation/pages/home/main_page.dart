@@ -11,23 +11,21 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      child: const SingleChildScrollView(
-        child: Column(
-          children: [
-            CurrentWeatherForecast(),
-            SizedBox(height: 16),
-            DailyWeatherForecast(),
-            SizedBox(height: 16),
-            WeeklyWeatherForecast(),
-            SizedBox(height: 16),
-            CityOnMap(),
-            SizedBox(height: 16),
-            CurrentWeatherCondition()
-          ],
-        ),
+    return const SingleChildScrollView(
+      child: Column(
+        children: [
+          CurrentWeatherForecast(),
+          SizedBox(height: 16),
+          DailyWeatherForecast(),
+          SizedBox(height: 16),
+          WeeklyWeatherForecast(),
+          SizedBox(height: 16),
+          CityOnMap(),
+          SizedBox(height: 16),
+          CurrentWeatherCondition()
+        ],
       ),
     );
+
   }
 }
