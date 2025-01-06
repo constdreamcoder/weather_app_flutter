@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'components/search_bar.dart';
 import 'components/search_results.dart';
 
 class SearchPage extends StatelessWidget {
@@ -9,7 +10,7 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SearchBar(),
+        CustomSearchBar(),
         const SizedBox(height: 20),
         SearchResults(),
       ],

@@ -6,8 +6,8 @@ import 'components/current_weather_forecast.dart';
 import 'components/daily_weather_forecast.dart';
 import 'components/weekly_weather_forecast.dart';
 
-class MainPage extends StatelessWidget {
-  const MainPage({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

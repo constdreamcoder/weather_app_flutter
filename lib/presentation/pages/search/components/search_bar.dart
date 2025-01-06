@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-class SearchBar extends StatelessWidget {
-  const SearchBar({super.key});
+class CustomSearchBar extends StatelessWidget {
+  const CustomSearchBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.5),
@@ -16,20 +14,26 @@ class SearchBar extends StatelessWidget {
       ),
       child: Row(
         children: [
-          SvgPicture.asset(
-            'assets/icons/search.svg',
-            colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn),
-            width: 24,
-            height: 24,
+          Icon(
+            Icons.search,
+            size: 24,
+            color: Colors.black,
           ),
           const SizedBox(width: 16),
-          Text(
-            'sdfsdfsd',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.black,
+          Expanded(
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: '도시명을 입력해주세요.',
+                isDense: true,
+                contentPadding: EdgeInsets.zero,
+              ),
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+              ),
             ),
-          )
+          ),
         ],
       ),
     );
