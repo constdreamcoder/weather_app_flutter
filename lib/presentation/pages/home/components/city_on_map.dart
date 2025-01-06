@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app_flutter/weather_forecast_frame.dart';
+
+import '../Base/weather_forecast_frame.dart';
 
 class CityOnMap extends StatelessWidget {
   const CityOnMap({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'core/theme/constant/app_colors.dart';
+import '../../../../core/theme/constant/app_colors.dart';
 
 class CurrentWeatherForecast extends StatelessWidget {
   const CurrentWeatherForecast({super.key});
