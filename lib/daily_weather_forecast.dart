@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app_flutter/weather_forecast_frame.dart';
 
+import 'core/theme/constant/app_colors.dart';
+
 class DailyWeatherForecast extends StatelessWidget {
   final String title;
 
@@ -10,6 +12,7 @@ class DailyWeatherForecast extends StatelessWidget {
   Widget build(BuildContext context) {
     return WeatherForecastFrame(
       title: title,
+      aspectRatio: 328 / 122,
       content: Expanded(
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -20,7 +23,10 @@ class DailyWeatherForecast extends StatelessWidget {
               children: [
                 const Text(
                   '오전 11시',
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: AppColors.textColor,
+                  ),
                 ),
                 const SizedBox(
                   height: 4,
@@ -35,7 +41,10 @@ class DailyWeatherForecast extends StatelessWidget {
                 ),
                 const Text(
                   '-12°',
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: AppColors.textColor,
+                  ),
                 ),
               ],
             ),

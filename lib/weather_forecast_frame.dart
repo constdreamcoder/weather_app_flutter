@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app_flutter/core/theme/constant/app_colors.dart';
 
 class WeatherForecastFrame extends StatelessWidget {
   final String title;
+  final double aspectRatio;
   final bool isDivided;
   final Widget content;
 
   const WeatherForecastFrame({
     super.key,
     required this.title,
+    required this.aspectRatio,
     this.isDivided = true,
     required this.content,
   });
@@ -15,13 +18,13 @@ class WeatherForecastFrame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: const Color(0xFF4B7DBC),
+        color: AppColors.componentBackgroundColor,
         borderRadius: BorderRadius.circular(8),
       ),
       child: AspectRatio(
-        aspectRatio: 328 / 120,
+        aspectRatio: aspectRatio,
         child: Column(
           mainAxisSize: MainAxisSize.min, // Column이 자식 높이에 맞게 축소
           children: [
@@ -29,7 +32,10 @@ class WeatherForecastFrame extends StatelessWidget {
               width: double.infinity,
               child: Text(
                 title,
-                style: const TextStyle(fontSize: 16, color: Colors.white),
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: AppColors.textColor,
+                ),
                 textAlign: TextAlign.start,
               ),
             ),
