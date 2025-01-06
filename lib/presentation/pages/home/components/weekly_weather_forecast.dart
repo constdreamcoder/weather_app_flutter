@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app_flutter/core/theme/constant/app_colors.dart';
-import 'package:weather_app_flutter/weather_forecast_frame.dart';
+
+import '../Base/weather_forecast_frame.dart';
 
 class WeeklyWeatherForecast extends StatelessWidget {
   const WeeklyWeatherForecast({super.key});
