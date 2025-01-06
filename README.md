@@ -1,16 +1,13 @@
-# weather_app_flutter
+## 📌 커밋 메세지 룰입니다. 📌
 
-A new Flutter project.
+✔ FEAT : 새로운 기능의 추가
 
-## Getting Started
+✔ FIX: 버그 수정
 
-This project is a starting point for a Flutter application.
+✔ DOCS: 문서 수정
 
-A few resources to get you started if this is your first Flutter project:
+✔ REFACTOR: 코드 리펙토링
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+✔ TEST: 테스트 코트, 리펙토링 테스트 코드 추가
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+✔ CHORE: 빌드 업무 수정, 패키지 매니저 수정(ex .gitignore 수정 같은 경우)
