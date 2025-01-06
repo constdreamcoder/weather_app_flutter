@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'WeatherForecastFrame.dart';
+
 void main() {
   runApp(MaterialApp(
     home: Scaffold(
         body: SafeArea(
-          // child: TodayForecast(),
-          child: CurrentWeather(),
+          child: WeatherForecastFrame(title: '안녕하세요',),
         )),
   ));
 }
@@ -29,3 +30,5 @@ class CurrentWeather extends StatelessWidget {
     );
   }
 }
+
+
