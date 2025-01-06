@@ -4,14 +4,13 @@ import 'package:weather_app_flutter/weather_forecast_frame.dart';
 import 'core/theme/constant/app_colors.dart';
 
 class DailyWeatherForecast extends StatelessWidget {
-  final String title;
 
-  const DailyWeatherForecast({super.key, required this.title});
+  const DailyWeatherForecast({super.key});
 
   @override
   Widget build(BuildContext context) {
     return WeatherForecastFrame(
-      title: title,
+      title: '돌풍의 풍속은 최대 4m/s입니다.',
       aspectRatio: 328 / 122,
       content: Expanded(
         child: ListView.builder(

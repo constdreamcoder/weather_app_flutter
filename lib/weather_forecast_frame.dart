@@ -39,11 +39,7 @@ class WeatherForecastFrame extends StatelessWidget {
                 textAlign: TextAlign.start,
               ),
             ),
-            if (isDivided)
-              Divider(
-                thickness: 1,
-                color: Colors.black.withOpacity(0.4),
-              ),
+            if (isDivided) Divider(),
             content,
           ],
         ),
