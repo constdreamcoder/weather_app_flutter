@@ -12,7 +12,7 @@ class WeeklyWeatherForecast extends StatelessWidget {
       aspectRatio: 328 / 248,
       content: Expanded(
         child: ListView.separated(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           separatorBuilder: (context, index) => const Divider(),
           itemCount: 5,
           itemBuilder: (context, index) => Row(
