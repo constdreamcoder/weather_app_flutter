@@ -53,7 +53,7 @@ class _MainAppState extends State<MainApp> {
         color: AppColors.pageBackgroundColor,
         child: SafeArea(
           child: Container(
-              margin: const EdgeInsets.all(16),
+              margin: const EdgeInsets.symmetric(horizontal:  16),
               child: [
                 HomePage(),
                 SearchPage(),

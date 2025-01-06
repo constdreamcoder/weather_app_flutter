@@ -22,7 +22,8 @@ class HomePage extends StatelessWidget {
           SizedBox(height: 16),
           CityOnMap(),
           SizedBox(height: 16),
-          CurrentWeatherCondition()
+          CurrentWeatherCondition(),
+          SizedBox(height: 16),
         ],
       ),
     );
