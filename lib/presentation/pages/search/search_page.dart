@@ -8,10 +8,10 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
         CustomSearchBar(),
-        const SizedBox(height: 20),
+        SizedBox(height: 20),
         SearchResults(),
       ],
     );

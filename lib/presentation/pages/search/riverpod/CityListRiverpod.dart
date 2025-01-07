@@ -4,11 +4,14 @@ import 'package:weather_app_flutter/domain/model/city.model.dart';
 
 import '../../../../domain/usecase/get_cities.usecase.dart';
 
-final cityListNotifierProvider = NotifierProvider<CityNotifier, AsyncValue<List<City>>>(() {
+final cityListNotifierProvider =
+    NotifierProvider<CityNotifier, AsyncValue<List<City>>>(() {
   return CityNotifier();
 });
 
 class CityNotifier extends Notifier<AsyncValue<List<City>>> {
+  List<City> _allCities = []; // 전체 도시 목록
+
   @override
   AsyncValue<List<City>> build() {
     _loadCities();
@@ -20,9 +23,9 @@ class CityNotifier extends Notifier<AsyncValue<List<City>>> {
       final repository = CityRepositoryImpl();
       final getCitiesUsecase = GetCitiesUsecase(repository);
 
-      final cities = await getCitiesUsecase();
+      _allCities = await getCitiesUsecase();
 
-      state = AsyncValue.data(cities);
+      state = AsyncValue.data(_allCities);
     } catch (e, stack) {
       state = AsyncValue.error(e, stack);
     }
@@ -31,5 +34,21 @@ class CityNotifier extends Notifier<AsyncValue<List<City>>> {
   Future<void> retry() async {
     state = const AsyncValue.loading();
     await _loadCities();
+  }
+
+  void updateCityList(String query) {
+    _filterCities(query);
+  }
+
+  void _filterCities(String searchQuery) {
+    if (_allCities.isNotEmpty) {
+      final filteredCities = _allCities
+          .where(
+            (city) =>
+                city.name.toLowerCase().contains(searchQuery.toLowerCase()),
+          )
+          .toList();
+      state = AsyncValue.data(filteredCities);
+    }
   }
 }

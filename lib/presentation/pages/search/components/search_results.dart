@@ -10,6 +10,7 @@ class SearchResults extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cityListState = ref.watch(cityListNotifierProvider);
+
     return Expanded(
       child: cityListState.when(
         loading: () => const Center(child: CircularProgressIndicator(),),

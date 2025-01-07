@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CustomSearchBar extends StatelessWidget {
+import '../riverpod/CityListRiverpod.dart';
+
+class CustomSearchBar extends ConsumerWidget {
   const CustomSearchBar({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final cityListState = ref.watch(cityListNotifierProvider);
+
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
@@ -22,6 +27,9 @@ class CustomSearchBar extends StatelessWidget {
           const SizedBox(width: 16),
           Expanded(
             child: TextField(
+              onChanged: (value) {
+                ref.read(cityListNotifierProvider.notifier).updateCityList(value);
+              },
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: '도시명을 입력해주세요.',
