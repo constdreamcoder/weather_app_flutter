@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_app_flutter/core/theme/constant/app_colors.dart';
 import 'package:weather_app_flutter/presentation/pages/home/home_page.dart';
 
 import 'presentation/pages/search/search_page.dart';
 
-void main() {
+Future<void> main() async {
   runApp(
-    const MaterialApp(
-      home: MainApp(),
+    const ProviderScope(
+      child: MaterialApp(
+        home: MainApp(),
+      ),
     ),
   );
 }
+
 // TODO: enum 사용해서 Navigation 코드 리팩토링하기
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
@@ -53,7 +57,7 @@ class _MainAppState extends State<MainApp> {
         color: AppColors.pageBackgroundColor,
         child: SafeArea(
           child: Container(
-              margin: const EdgeInsets.symmetric(horizontal:  16),
+              margin: const EdgeInsets.symmetric(horizontal: 16),
               child: [
                 HomePage(),
                 SearchPage(),
