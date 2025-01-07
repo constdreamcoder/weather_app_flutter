@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app_flutter/core/theme/constant/app_colors.dart';
+import 'package:weather_app_flutter/data/repository_impl/city.repository_impl.dart';
+import 'package:weather_app_flutter/domain/usecase/get_cities.usecase.dart';
 import 'package:weather_app_flutter/presentation/pages/home/home_page.dart';
 
 import 'presentation/pages/search/search_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final repository = CityRepositoryImpl();
+  final getCitiesUsecase = GetCitiesUsecase(repository);
+
+  final cities = await getCitiesUsecase();
+
+  for (var city in cities) {
+    print('City: ${city.name}, Country: ${city.country}, Lon: ${city.coord.lon}, Lat: ${city.coord.lat}');
+  }
   runApp(
     const MaterialApp(
       home: MainApp(),

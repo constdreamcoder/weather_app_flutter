@@ -32,8 +32,8 @@ class CoordDto {
 
   factory CoordDto.fromJson(Map<String, dynamic> json) {
     return CoordDto(
-      lon: json['lon'],
-      lat: json['lat'],
+      lon: (json['lon'] as num).toDouble(),
+      lat: (json['lat'] as num).toDouble(),
     );
   }
 }

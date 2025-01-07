@@ -2,10 +2,10 @@ import 'package:weather_app_flutter/domain/repository/city.repository.dart';
 
 import '../model/city.model.dart';
 
-class GetCitiesUseCase {
+class GetCitiesUsecase {
   final CityRepository repository;
 
-  GetCitiesUseCase(this.repository);
+  GetCitiesUsecase(this.repository);
 
   Future<List<City>> call() async {
     return await repository.getCities();
