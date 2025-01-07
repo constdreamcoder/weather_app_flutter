@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_app_flutter/core/theme/constant/app_colors.dart';
 import 'package:weather_app_flutter/data/repository_impl/city.repository_impl.dart';
 import 'package:weather_app_flutter/domain/usecase/get_cities.usecase.dart';
@@ -7,22 +8,15 @@ import 'package:weather_app_flutter/presentation/pages/home/home_page.dart';
 import 'presentation/pages/search/search_page.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  final repository = CityRepositoryImpl();
-  final getCitiesUsecase = GetCitiesUsecase(repository);
-
-  final cities = await getCitiesUsecase();
-
-  for (var city in cities) {
-    print('City: ${city.name}, Country: ${city.country}, Lon: ${city.coord.lon}, Lat: ${city.coord.lat}');
-  }
   runApp(
-    const MaterialApp(
-      home: MainApp(),
+    const ProviderScope(
+      child: MaterialApp(
+        home: MainApp(),
+      ),
     ),
   );
 }
+
 // TODO: enum 사용해서 Navigation 코드 리팩토링하기
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
@@ -65,7 +59,7 @@ class _MainAppState extends State<MainApp> {
         color: AppColors.pageBackgroundColor,
         child: SafeArea(
           child: Container(
-              margin: const EdgeInsets.symmetric(horizontal:  16),
+              margin: const EdgeInsets.symmetric(horizontal: 16),
               child: [
                 HomePage(),
                 SearchPage(),
