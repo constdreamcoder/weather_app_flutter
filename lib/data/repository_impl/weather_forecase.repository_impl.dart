@@ -4,8 +4,8 @@ import 'package:weather_app_flutter/data/mapper/weather_forecast.mapper.dart';
 
 import '../../domain/model/weather_forecast/weather_forecast.model.dart';
 import '../../domain/repository/weather_forecast/weather_forecast.repository.dart';
+import '../data_source/network/dio_client.dart';
 import '../data_source/remote/weather_forecast.api.dart';
-import '../network/dio_client.dart';
 
 class WeatherForecastRepositoryImpl implements WeatherForecastRepository {
   @override
