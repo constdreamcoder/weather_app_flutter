@@ -9,7 +9,12 @@ extension WeatherForecastDtoX on WeatherForecastDto {
       lon: lon,
       timezone: timezone,
       current: current.toModel(),
-      hourly: hourly.map((dto) => dto.toModel()).toList(),
+      hourly: hourly
+          .asMap()
+          .entries
+          .where((entry) => entry.key % 3 == 0)
+          .map((entry) => entry.value.toModel())
+          .toList(),
       daily: daily.map((dto) => dto.toModel()).toList(),
     );
   }
@@ -21,10 +26,13 @@ extension CurrentWeatherDtoX on CurrentWeatherDto {
     return CurrentWeather(
       dt: dt,
       temp: temp,
-      humidity: humidity,
-      clouds: clouds,
-      windSpeed: windSpeed,
       windGust: windGust,
+      weatherConditions: {
+        0: '$humidity%',
+        1: '$clouds%',
+        2: '${windSpeed}m/s',
+        3: '${pressure}hpa',
+      },
       weather: weather.map((dto) => dto.toModel()).toList(),
     );
   }

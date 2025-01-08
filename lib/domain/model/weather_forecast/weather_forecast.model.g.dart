@@ -36,9 +36,10 @@ _$CurrentWeatherImpl _$$CurrentWeatherImplFromJson(Map<String, dynamic> json) =>
     _$CurrentWeatherImpl(
       dt: (json['dt'] as num).toInt(),
       temp: (json['temp'] as num).toDouble(),
-      humidity: (json['humidity'] as num).toInt(),
-      clouds: (json['clouds'] as num).toInt(),
-      windSpeed: (json['windSpeed'] as num).toDouble(),
+      weatherConditions:
+          (json['weatherConditions'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(int.parse(k), e as String),
+      ),
       windGust: (json['windGust'] as num?)?.toDouble(),
       weather: (json['weather'] as List<dynamic>)
           .map((e) => WeatherDescription.fromJson(e as Map<String, dynamic>))
@@ -50,9 +51,8 @@ Map<String, dynamic> _$$CurrentWeatherImplToJson(
     <String, dynamic>{
       'dt': instance.dt,
       'temp': instance.temp,
-      'humidity': instance.humidity,
-      'clouds': instance.clouds,
-      'windSpeed': instance.windSpeed,
+      'weatherConditions':
+          instance.weatherConditions.map((k, e) => MapEntry(k.toString(), e)),
       'windGust': instance.windGust,
       'weather': instance.weather,
     };

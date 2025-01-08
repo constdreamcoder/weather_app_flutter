@@ -42,6 +42,7 @@ _$CurrentWeatherDtoImpl _$$CurrentWeatherDtoImplFromJson(
       temp: (json['temp'] as num).toDouble(),
       humidity: (json['humidity'] as num).toInt(),
       clouds: (json['clouds'] as num).toInt(),
+      pressure: (json['pressure'] as num).toInt(),
       windSpeed: (json['wind_speed'] as num).toDouble(),
       windGust: (json['wind_gust'] as num?)?.toDouble(),
       weather: (json['weather'] as List<dynamic>?)
@@ -58,6 +59,7 @@ Map<String, dynamic> _$$CurrentWeatherDtoImplToJson(
       'temp': instance.temp,
       'humidity': instance.humidity,
       'clouds': instance.clouds,
+      'pressure': instance.pressure,
       'wind_speed': instance.windSpeed,
       'wind_gust': instance.windGust,
       'weather': instance.weather,

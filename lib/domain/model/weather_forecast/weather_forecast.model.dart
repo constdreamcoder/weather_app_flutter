@@ -25,9 +25,7 @@ class CurrentWeather with _$CurrentWeather {
   const factory CurrentWeather({
     required final int dt,
     required final double temp,
-    required final int humidity,
-    required final int clouds,
-    required final double windSpeed,
+    required final Map<int, String> weatherConditions,
     required final double? windGust,
     required final List<WeatherDescription> weather,
   }) = _CurrentWeather;
@@ -62,11 +60,11 @@ class DailyWeather with _$DailyWeather {
 
 @freezed
 class DailyWeatherTemperature with _$DailyWeatherTemperature {
-  const factory DailyWeatherTemperature(
-      {required final double min,
-        required final double max,
-        @Default(<WeatherDescription>[])
-        List<WeatherDescription> weather}) = _DailyWeatherTemperature;
+  const factory DailyWeatherTemperature({
+    required final double min,
+    required final double max,
+    @Default(<WeatherDescription>[]) List<WeatherDescription> weather,
+  }) = _DailyWeatherTemperature;
 
   factory DailyWeatherTemperature.fromJson(Map<String, dynamic> json) =>
       _$DailyWeatherTemperatureFromJson(json);

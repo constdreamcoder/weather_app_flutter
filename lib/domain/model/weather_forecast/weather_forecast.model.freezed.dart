@@ -326,10 +326,12 @@ CurrentWeather _$CurrentWeatherFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CurrentWeather {
   int get dt => throw _privateConstructorUsedError;
-  double get temp => throw _privateConstructorUsedError;
-  int get humidity => throw _privateConstructorUsedError;
-  int get clouds => throw _privateConstructorUsedError;
-  double get windSpeed => throw _privateConstructorUsedError;
+  double get temp =>
+      throw _privateConstructorUsedError; // required final int humidity,
+// required final int clouds,
+// required final int pressure,
+// required final double windSpeed,
+  Map<int, String> get weatherConditions => throw _privateConstructorUsedError;
   double? get windGust => throw _privateConstructorUsedError;
   List<WeatherDescription> get weather => throw _privateConstructorUsedError;
 
@@ -352,9 +354,7 @@ abstract class $CurrentWeatherCopyWith<$Res> {
   $Res call(
       {int dt,
       double temp,
-      int humidity,
-      int clouds,
-      double windSpeed,
+      Map<int, String> weatherConditions,
       double? windGust,
       List<WeatherDescription> weather});
 }
@@ -376,9 +376,7 @@ class _$CurrentWeatherCopyWithImpl<$Res, $Val extends CurrentWeather>
   $Res call({
     Object? dt = null,
     Object? temp = null,
-    Object? humidity = null,
-    Object? clouds = null,
-    Object? windSpeed = null,
+    Object? weatherConditions = null,
     Object? windGust = freezed,
     Object? weather = null,
   }) {
@@ -391,18 +389,10 @@ class _$CurrentWeatherCopyWithImpl<$Res, $Val extends CurrentWeather>
           ? _value.temp
           : temp // ignore: cast_nullable_to_non_nullable
               as double,
-      humidity: null == humidity
-          ? _value.humidity
-          : humidity // ignore: cast_nullable_to_non_nullable
-              as int,
-      clouds: null == clouds
-          ? _value.clouds
-          : clouds // ignore: cast_nullable_to_non_nullable
-              as int,
-      windSpeed: null == windSpeed
-          ? _value.windSpeed
-          : windSpeed // ignore: cast_nullable_to_non_nullable
-              as double,
+      weatherConditions: null == weatherConditions
+          ? _value.weatherConditions
+          : weatherConditions // ignore: cast_nullable_to_non_nullable
+              as Map<int, String>,
       windGust: freezed == windGust
           ? _value.windGust
           : windGust // ignore: cast_nullable_to_non_nullable
@@ -426,9 +416,7 @@ abstract class _$$CurrentWeatherImplCopyWith<$Res>
   $Res call(
       {int dt,
       double temp,
-      int humidity,
-      int clouds,
-      double windSpeed,
+      Map<int, String> weatherConditions,
       double? windGust,
       List<WeatherDescription> weather});
 }
@@ -448,9 +436,7 @@ class __$$CurrentWeatherImplCopyWithImpl<$Res>
   $Res call({
     Object? dt = null,
     Object? temp = null,
-    Object? humidity = null,
-    Object? clouds = null,
-    Object? windSpeed = null,
+    Object? weatherConditions = null,
     Object? windGust = freezed,
     Object? weather = null,
   }) {
@@ -463,18 +449,10 @@ class __$$CurrentWeatherImplCopyWithImpl<$Res>
           ? _value.temp
           : temp // ignore: cast_nullable_to_non_nullable
               as double,
-      humidity: null == humidity
-          ? _value.humidity
-          : humidity // ignore: cast_nullable_to_non_nullable
-              as int,
-      clouds: null == clouds
-          ? _value.clouds
-          : clouds // ignore: cast_nullable_to_non_nullable
-              as int,
-      windSpeed: null == windSpeed
-          ? _value.windSpeed
-          : windSpeed // ignore: cast_nullable_to_non_nullable
-              as double,
+      weatherConditions: null == weatherConditions
+          ? _value._weatherConditions
+          : weatherConditions // ignore: cast_nullable_to_non_nullable
+              as Map<int, String>,
       windGust: freezed == windGust
           ? _value.windGust
           : windGust // ignore: cast_nullable_to_non_nullable
@@ -495,12 +473,11 @@ class _$CurrentWeatherImpl
   const _$CurrentWeatherImpl(
       {required this.dt,
       required this.temp,
-      required this.humidity,
-      required this.clouds,
-      required this.windSpeed,
+      required final Map<int, String> weatherConditions,
       required this.windGust,
       required final List<WeatherDescription> weather})
-      : _weather = weather;
+      : _weatherConditions = weatherConditions,
+        _weather = weather;
 
   factory _$CurrentWeatherImpl.fromJson(Map<String, dynamic> json) =>
       _$$CurrentWeatherImplFromJson(json);
@@ -509,12 +486,23 @@ class _$CurrentWeatherImpl
   final int dt;
   @override
   final double temp;
+// required final int humidity,
+// required final int clouds,
+// required final int pressure,
+// required final double windSpeed,
+  final Map<int, String> _weatherConditions;
+// required final int humidity,
+// required final int clouds,
+// required final int pressure,
+// required final double windSpeed,
   @override
-  final int humidity;
-  @override
-  final int clouds;
-  @override
-  final double windSpeed;
+  Map<int, String> get weatherConditions {
+    if (_weatherConditions is EqualUnmodifiableMapView)
+      return _weatherConditions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_weatherConditions);
+  }
+
   @override
   final double? windGust;
   final List<WeatherDescription> _weather;
@@ -527,7 +515,7 @@ class _$CurrentWeatherImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CurrentWeather(dt: $dt, temp: $temp, humidity: $humidity, clouds: $clouds, windSpeed: $windSpeed, windGust: $windGust, weather: $weather)';
+    return 'CurrentWeather(dt: $dt, temp: $temp, weatherConditions: $weatherConditions, windGust: $windGust, weather: $weather)';
   }
 
   @override
@@ -537,9 +525,7 @@ class _$CurrentWeatherImpl
       ..add(DiagnosticsProperty('type', 'CurrentWeather'))
       ..add(DiagnosticsProperty('dt', dt))
       ..add(DiagnosticsProperty('temp', temp))
-      ..add(DiagnosticsProperty('humidity', humidity))
-      ..add(DiagnosticsProperty('clouds', clouds))
-      ..add(DiagnosticsProperty('windSpeed', windSpeed))
+      ..add(DiagnosticsProperty('weatherConditions', weatherConditions))
       ..add(DiagnosticsProperty('windGust', windGust))
       ..add(DiagnosticsProperty('weather', weather));
   }
@@ -551,11 +537,8 @@ class _$CurrentWeatherImpl
             other is _$CurrentWeatherImpl &&
             (identical(other.dt, dt) || other.dt == dt) &&
             (identical(other.temp, temp) || other.temp == temp) &&
-            (identical(other.humidity, humidity) ||
-                other.humidity == humidity) &&
-            (identical(other.clouds, clouds) || other.clouds == clouds) &&
-            (identical(other.windSpeed, windSpeed) ||
-                other.windSpeed == windSpeed) &&
+            const DeepCollectionEquality()
+                .equals(other._weatherConditions, _weatherConditions) &&
             (identical(other.windGust, windGust) ||
                 other.windGust == windGust) &&
             const DeepCollectionEquality().equals(other._weather, _weather));
@@ -563,8 +546,13 @@ class _$CurrentWeatherImpl
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, dt, temp, humidity, clouds,
-      windSpeed, windGust, const DeepCollectionEquality().hash(_weather));
+  int get hashCode => Object.hash(
+      runtimeType,
+      dt,
+      temp,
+      const DeepCollectionEquality().hash(_weatherConditions),
+      windGust,
+      const DeepCollectionEquality().hash(_weather));
 
   /// Create a copy of CurrentWeather
   /// with the given fields replaced by the non-null parameter values.
@@ -587,9 +575,7 @@ abstract class _CurrentWeather implements CurrentWeather {
   const factory _CurrentWeather(
       {required final int dt,
       required final double temp,
-      required final int humidity,
-      required final int clouds,
-      required final double windSpeed,
+      required final Map<int, String> weatherConditions,
       required final double? windGust,
       required final List<WeatherDescription> weather}) = _$CurrentWeatherImpl;
 
@@ -599,13 +585,12 @@ abstract class _CurrentWeather implements CurrentWeather {
   @override
   int get dt;
   @override
-  double get temp;
+  double get temp; // required final int humidity,
+// required final int clouds,
+// required final int pressure,
+// required final double windSpeed,
   @override
-  int get humidity;
-  @override
-  int get clouds;
-  @override
-  double get windSpeed;
+  Map<int, String> get weatherConditions;
   @override
   double? get windGust;
   @override

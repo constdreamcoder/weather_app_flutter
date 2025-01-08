@@ -8,7 +8,7 @@ class CityOnMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WeatherForecastFrame(
-      title: '강수량',
+      title: '위치',
       isDivided: false,
       aspectRatio: 328 / 420,
       content: Column(

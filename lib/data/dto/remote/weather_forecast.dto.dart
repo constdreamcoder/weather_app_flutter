@@ -26,6 +26,7 @@ class CurrentWeatherDto with _$CurrentWeatherDto {
     required final double temp,
     required final int humidity,
     required final int clouds,
+    required final int pressure,
     @JsonKey(name: 'wind_speed') required final double windSpeed,
     @JsonKey(name: 'wind_gust', defaultValue: null) final double? windGust,
     @Default(<WeatherDescriptionDto>[]) List<WeatherDescriptionDto> weather

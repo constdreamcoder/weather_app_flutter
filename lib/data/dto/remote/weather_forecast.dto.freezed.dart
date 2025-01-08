@@ -331,6 +331,7 @@ mixin _$CurrentWeatherDto {
   double get temp => throw _privateConstructorUsedError;
   int get humidity => throw _privateConstructorUsedError;
   int get clouds => throw _privateConstructorUsedError;
+  int get pressure => throw _privateConstructorUsedError;
   @JsonKey(name: 'wind_speed')
   double get windSpeed => throw _privateConstructorUsedError;
   @JsonKey(name: 'wind_gust', defaultValue: null)
@@ -358,6 +359,7 @@ abstract class $CurrentWeatherDtoCopyWith<$Res> {
       double temp,
       int humidity,
       int clouds,
+      int pressure,
       @JsonKey(name: 'wind_speed') double windSpeed,
       @JsonKey(name: 'wind_gust', defaultValue: null) double? windGust,
       List<WeatherDescriptionDto> weather});
@@ -382,6 +384,7 @@ class _$CurrentWeatherDtoCopyWithImpl<$Res, $Val extends CurrentWeatherDto>
     Object? temp = null,
     Object? humidity = null,
     Object? clouds = null,
+    Object? pressure = null,
     Object? windSpeed = null,
     Object? windGust = freezed,
     Object? weather = null,
@@ -402,6 +405,10 @@ class _$CurrentWeatherDtoCopyWithImpl<$Res, $Val extends CurrentWeatherDto>
       clouds: null == clouds
           ? _value.clouds
           : clouds // ignore: cast_nullable_to_non_nullable
+              as int,
+      pressure: null == pressure
+          ? _value.pressure
+          : pressure // ignore: cast_nullable_to_non_nullable
               as int,
       windSpeed: null == windSpeed
           ? _value.windSpeed
@@ -432,6 +439,7 @@ abstract class _$$CurrentWeatherDtoImplCopyWith<$Res>
       double temp,
       int humidity,
       int clouds,
+      int pressure,
       @JsonKey(name: 'wind_speed') double windSpeed,
       @JsonKey(name: 'wind_gust', defaultValue: null) double? windGust,
       List<WeatherDescriptionDto> weather});
@@ -454,6 +462,7 @@ class __$$CurrentWeatherDtoImplCopyWithImpl<$Res>
     Object? temp = null,
     Object? humidity = null,
     Object? clouds = null,
+    Object? pressure = null,
     Object? windSpeed = null,
     Object? windGust = freezed,
     Object? weather = null,
@@ -474,6 +483,10 @@ class __$$CurrentWeatherDtoImplCopyWithImpl<$Res>
       clouds: null == clouds
           ? _value.clouds
           : clouds // ignore: cast_nullable_to_non_nullable
+              as int,
+      pressure: null == pressure
+          ? _value.pressure
+          : pressure // ignore: cast_nullable_to_non_nullable
               as int,
       windSpeed: null == windSpeed
           ? _value.windSpeed
@@ -501,6 +514,7 @@ class _$CurrentWeatherDtoImpl
       required this.temp,
       required this.humidity,
       required this.clouds,
+      required this.pressure,
       @JsonKey(name: 'wind_speed') required this.windSpeed,
       @JsonKey(name: 'wind_gust', defaultValue: null) this.windGust,
       final List<WeatherDescriptionDto> weather =
@@ -519,6 +533,8 @@ class _$CurrentWeatherDtoImpl
   @override
   final int clouds;
   @override
+  final int pressure;
+  @override
   @JsonKey(name: 'wind_speed')
   final double windSpeed;
   @override
@@ -535,7 +551,7 @@ class _$CurrentWeatherDtoImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CurrentWeatherDto(dt: $dt, temp: $temp, humidity: $humidity, clouds: $clouds, windSpeed: $windSpeed, windGust: $windGust, weather: $weather)';
+    return 'CurrentWeatherDto(dt: $dt, temp: $temp, humidity: $humidity, clouds: $clouds, pressure: $pressure, windSpeed: $windSpeed, windGust: $windGust, weather: $weather)';
   }
 
   @override
@@ -547,6 +563,7 @@ class _$CurrentWeatherDtoImpl
       ..add(DiagnosticsProperty('temp', temp))
       ..add(DiagnosticsProperty('humidity', humidity))
       ..add(DiagnosticsProperty('clouds', clouds))
+      ..add(DiagnosticsProperty('pressure', pressure))
       ..add(DiagnosticsProperty('windSpeed', windSpeed))
       ..add(DiagnosticsProperty('windGust', windGust))
       ..add(DiagnosticsProperty('weather', weather));
@@ -562,6 +579,8 @@ class _$CurrentWeatherDtoImpl
             (identical(other.humidity, humidity) ||
                 other.humidity == humidity) &&
             (identical(other.clouds, clouds) || other.clouds == clouds) &&
+            (identical(other.pressure, pressure) ||
+                other.pressure == pressure) &&
             (identical(other.windSpeed, windSpeed) ||
                 other.windSpeed == windSpeed) &&
             (identical(other.windGust, windGust) ||
@@ -571,8 +590,16 @@ class _$CurrentWeatherDtoImpl
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, dt, temp, humidity, clouds,
-      windSpeed, windGust, const DeepCollectionEquality().hash(_weather));
+  int get hashCode => Object.hash(
+      runtimeType,
+      dt,
+      temp,
+      humidity,
+      clouds,
+      pressure,
+      windSpeed,
+      windGust,
+      const DeepCollectionEquality().hash(_weather));
 
   /// Create a copy of CurrentWeatherDto
   /// with the given fields replaced by the non-null parameter values.
@@ -597,6 +624,7 @@ abstract class _CurrentWeatherDto implements CurrentWeatherDto {
       required final double temp,
       required final int humidity,
       required final int clouds,
+      required final int pressure,
       @JsonKey(name: 'wind_speed') required final double windSpeed,
       @JsonKey(name: 'wind_gust', defaultValue: null) final double? windGust,
       final List<WeatherDescriptionDto> weather}) = _$CurrentWeatherDtoImpl;
@@ -612,6 +640,8 @@ abstract class _CurrentWeatherDto implements CurrentWeatherDto {
   int get humidity;
   @override
   int get clouds;
+  @override
+  int get pressure;
   @override
   @JsonKey(name: 'wind_speed')
   double get windSpeed;
