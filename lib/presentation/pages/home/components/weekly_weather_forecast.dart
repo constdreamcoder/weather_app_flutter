@@ -8,9 +8,12 @@ import '../Base/weather_forecast_frame.dart';
 import '../riverpod/weather_forecast_riverpod.dart';
 
 class WeeklyWeatherForecast extends StatelessWidget {
-  final WeatherForecast weatherForecast;
+  final List<DailyWeather> daily;
 
-  const WeeklyWeatherForecast({super.key, required this.weatherForecast});
+  const WeeklyWeatherForecast({
+    super.key,
+    required this.daily,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +31,7 @@ class WeeklyWeatherForecast extends StatelessWidget {
               SizedBox(
                 width: 30,
                 child: Text(
-                  index == 0
-                      ? '오늘'
-                      : weatherForecast.daily[index].dt.getDayFromUnixTime(),
+                  index == 0 ? '오늘' : daily[index].dt.getDayFromUnixTime(),
                   // '오늘',
                   style: const TextStyle(
                     fontSize: 16,
@@ -39,7 +40,7 @@ class WeeklyWeatherForecast extends StatelessWidget {
                 ),
               ),
               Image.asset(
-                'assets/images/${weatherForecast.daily[index].weather.first.icon.substring(0, 2)}d@2x.png',
+                'assets/images/${daily[index].weather.first.icon.substring(0, 2)}d@2x.png',
                 width: 32,
                 height: 32,
               ),
@@ -49,7 +50,7 @@ class WeeklyWeatherForecast extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      '최대: ${weatherForecast.daily[index].temp.max.roundToNearestInt()}',
+                      '최대: ${daily[index].temp.max.roundToNearestInt()}',
                       // '최대:-88°',
                       style: const TextStyle(
                         fontSize: 16,
@@ -58,7 +59,7 @@ class WeeklyWeatherForecast extends StatelessWidget {
                     ),
                     const SizedBox(width: 16),
                     Text(
-                      '최소: ${weatherForecast.daily[index].temp.min.roundToNearestInt()}°',
+                      '최소: ${daily[index].temp.min.roundToNearestInt()}°',
                       // '최소:-88°',
                       style: const TextStyle(
                         fontSize: 16,

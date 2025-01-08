@@ -326,11 +326,7 @@ CurrentWeather _$CurrentWeatherFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CurrentWeather {
   int get dt => throw _privateConstructorUsedError;
-  double get temp =>
-      throw _privateConstructorUsedError; // required final int humidity,
-// required final int clouds,
-// required final int pressure,
-// required final double windSpeed,
+  double get temp => throw _privateConstructorUsedError;
   Map<int, String> get weatherConditions => throw _privateConstructorUsedError;
   double? get windGust => throw _privateConstructorUsedError;
   List<WeatherDescription> get weather => throw _privateConstructorUsedError;
@@ -486,15 +482,7 @@ class _$CurrentWeatherImpl
   final int dt;
   @override
   final double temp;
-// required final int humidity,
-// required final int clouds,
-// required final int pressure,
-// required final double windSpeed,
   final Map<int, String> _weatherConditions;
-// required final int humidity,
-// required final int clouds,
-// required final int pressure,
-// required final double windSpeed,
   @override
   Map<int, String> get weatherConditions {
     if (_weatherConditions is EqualUnmodifiableMapView)
@@ -585,10 +573,7 @@ abstract class _CurrentWeather implements CurrentWeather {
   @override
   int get dt;
   @override
-  double get temp; // required final int humidity,
-// required final int clouds,
-// required final int pressure,
-// required final double windSpeed,
+  double get temp;
   @override
   Map<int, String> get weatherConditions;
   @override

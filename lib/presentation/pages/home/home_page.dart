@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weather_app_flutter/core/utils/extensions.dart';
 import 'package:weather_app_flutter/presentation/pages/home/riverpod/weather_forecast_riverpod.dart';
 
 import 'components/city_on_map.dart';
@@ -22,14 +23,30 @@ class HomePage extends ConsumerWidget {
       data: (weatherForecast) => SingleChildScrollView(
         child: Column(
           children: [
-            CurrentWeatherForecast(weatherForecast: weatherForecast),
+            CurrentWeatherForecast(
+              cityName: weatherForecast.timezone.split('/')[1],
+              temperature: weatherForecast.current.temp.roundToNearestInt(),
+              weatherDescription:
+                  weatherForecast.current.weather[0].description,
+              maxTemp: weatherForecast.daily[0].temp.max.roundToNearestInt(),
+              minTemp: weatherForecast.daily[0].temp.min.roundToNearestInt(),
+            ),
             const SizedBox(height: 16),
-            DailyWeatherForecast(weatherForecast: weatherForecast),
+
+            DailyWeatherForecast(
+              maxWindSpeed: weatherForecast.current.windGust ?? 0,
+              hourly: weatherForecast.hourly,
+            ),
             const SizedBox(height: 16),
-            WeeklyWeatherForecast(weatherForecast: weatherForecast),
+
+            WeeklyWeatherForecast(
+              daily: weatherForecast.daily,
+            ),
             const SizedBox(height: 16),
+
             // CityOnMap(),
             // SizedBox(height: 16),
+
             CurrentWeatherCondition(
               weatherConditions: weatherForecast.current.weatherConditions,
               windGust: weatherForecast.current.windGust,
