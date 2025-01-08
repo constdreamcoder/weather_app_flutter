@@ -1,4 +1,4 @@
-import 'package:weather_app_flutter/data/dto/city_list.dto.dart';
+import 'package:weather_app_flutter/data/dto/local/city_list.dto.dart';
 
 import '../../domain/model/city.model.dart';
 

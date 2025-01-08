@@ -3,7 +3,7 @@ import 'package:weather_app_flutter/data/mapper/city.mapper.dart';
 import 'package:weather_app_flutter/domain/model/city.model.dart';
 import 'package:weather_app_flutter/domain/repository/city.repository.dart';
 
-import '../dto/city_list.dto.dart';
+import '../dto/local/city_list.dto.dart';
 
 class CityRepositoryImpl implements CityRepository {
   @override
