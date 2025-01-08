@@ -1,6 +1,6 @@
 import 'package:weather_app_flutter/data/data_source/local/city_list.dao.dart';
 import 'package:weather_app_flutter/data/mapper/city.mapper.dart';
-import 'package:weather_app_flutter/domain/model/city.model.dart';
+import 'package:weather_app_flutter/domain/model/city/city.model.dart';
 import 'package:weather_app_flutter/domain/repository/city.repository.dart';
 
 import '../dto/local/city_list.dto.dart';

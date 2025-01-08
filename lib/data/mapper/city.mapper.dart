@@ -1,6 +1,6 @@
 import 'package:weather_app_flutter/data/dto/local/city_list.dto.dart';
 
-import '../../domain/model/city.model.dart';
+import '../../domain/model/city/city.model.dart';
 
 class CityMapper {
   static City fromDto(CityDto dto) {
