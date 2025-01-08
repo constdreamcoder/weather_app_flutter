@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_app_flutter/core/theme/constant/app_colors.dart';
 import 'package:weather_app_flutter/presentation/pages/home/home_page.dart';
@@ -6,6 +7,8 @@ import 'package:weather_app_flutter/presentation/pages/home/home_page.dart';
 import 'presentation/pages/search/search_page.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   runApp(
     const ProviderScope(
       child: MaterialApp(
