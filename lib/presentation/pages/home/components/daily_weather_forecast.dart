@@ -19,7 +19,7 @@ class DailyWeatherForecast extends StatelessWidget {
   Widget build(BuildContext context) {
     return WeatherForecastFrame(
       title: '돌풍의 풍속은 최대 ${maxWindSpeed}m/s입니다.',
-      aspectRatio: 328 / 122,
+      aspectRatio: 328 / 124,
       content: Expanded(
         child: ListView.builder(
           scrollDirection: Axis.horizontal,

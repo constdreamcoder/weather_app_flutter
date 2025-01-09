@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:weather_app_flutter/core/utils/extensions.dart';
 import 'package:weather_app_flutter/presentation/pages/home/riverpod/weather_forecast_riverpod.dart';
 
@@ -15,14 +16,8 @@ class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
-  createState() {
-    // TODO: implement createState
-    return super.createState();
-  }
-
-  @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final weatherForeState = ref.watch(weatherForcastNotifierProvider);
+    final weatherForeState = ref.watch(weatherForecastNotifierProvider);
 
     return weatherForeState.when(
       loading: () => const Center(
@@ -72,7 +67,7 @@ class HomePage extends ConsumerWidget {
           Text('에러 발생!: $err'),
           ElevatedButton(
             onPressed: () =>
-                ref.read(weatherForcastNotifierProvider.notifier).retry(),
+                ref.read(weatherForecastNotifierProvider.notifier).retry(),
             child: const Text('재시도'),
           ),
         ],
