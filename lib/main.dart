@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:weather_app_flutter/core/theme/constant/app_colors.dart';
 import 'package:weather_app_flutter/presentation/main_riverpod.dart';
 import 'package:weather_app_flutter/presentation/pages/home/home_page.dart';
 
 import 'presentation/pages/search/search_page.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
   runApp(
@@ -19,6 +20,7 @@ Future<void> main() async {
   );
 }
 
+// TODO: enum 사용해서 Navigation 코드 리팩토링하기
 class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
@@ -64,8 +66,6 @@ class MainApp extends ConsumerWidget {
   }
 }
 
-
-// TODO: enum 사용해서 Navigation 코드 리팩토링하기
 // class MainApp extends StatefulWidget {
 //   const MainApp({super.key});
 //

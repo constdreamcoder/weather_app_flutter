@@ -22,7 +22,7 @@ class SearchResults extends ConsumerWidget {
           itemBuilder: (context, index) => GestureDetector(
             onTap: () {
                 ref.read(pageProvider.notifier).changePage(0);
-                ref.read(weatherForcastNotifierProvider.notifier).loadWeatherForecast(cities[index].coord, cities[index].name);
+                ref.read(weatherForecastNotifierProvider.notifier).loadWeatherForecast(cities[index].coord, cities[index].name);
               },
             child: Container(
               color: Colors.transparent,

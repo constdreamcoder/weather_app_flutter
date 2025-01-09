@@ -50,7 +50,7 @@ class WeeklyWeatherForecast extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      '최대: ${daily[index].temp.max.roundToNearestInt()}',
+                      '최대: ${daily[index].temp.max.roundToNearestInt()}°',
                       // '최대:-88°',
                       style: const TextStyle(
                         fontSize: 16,
