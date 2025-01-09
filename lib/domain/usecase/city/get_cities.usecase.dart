@@ -1,6 +1,6 @@
-import 'package:weather_app_flutter/domain/repository/city.repository.dart';
+import 'package:weather_app_flutter/domain/repository/city/city.repository.dart';
 
-import '../model/city.model.dart';
+import '../../model/city/city.model.dart';
 
 class GetCitiesUsecase {
   final CityRepository repository;

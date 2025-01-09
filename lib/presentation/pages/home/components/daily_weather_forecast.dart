@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app_flutter/core/utils/extensions.dart';
+import 'package:weather_app_flutter/domain/model/weather_forecast/weather_forecast.model.dart';
 
 import '../../../../core/theme/constant/app_colors.dart';
 import '../Base/weather_forecast_frame.dart';
 
 class DailyWeatherForecast extends StatelessWidget {
+  final double maxWindSpeed;
+  final List<HourlyWeather> hourly;
 
-  const DailyWeatherForecast({super.key});
+  const DailyWeatherForecast({
+    super.key,
+    required this.maxWindSpeed,
+    required this.hourly,
+  });
 
   @override
   Widget build(BuildContext context) {
     return WeatherForecastFrame(
-      title: '돌풍의 풍속은 최대 4m/s입니다.',
+      title: '돌풍의 풍속은 최대 ${maxWindSpeed}m/s입니다.',
       aspectRatio: 328 / 122,
       content: Expanded(
         child: ListView.builder(
@@ -20,9 +28,9 @@ class DailyWeatherForecast extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min, // Column이 자식 높이에 맞게 축소
               children: [
-                const Text(
-                  '오전 11시',
-                  style: TextStyle(
+                Text(
+                  index == 0 ? '지금' : hourly[index].dt.formathUnixTime(),
+                  style: const TextStyle(
                     fontSize: 16,
                     color: AppColors.textColor,
                   ),
@@ -31,16 +39,16 @@ class DailyWeatherForecast extends StatelessWidget {
                   height: 4,
                 ),
                 Image.asset(
-                  'assets/images/01d@2x.png',
+                  'assets/images/${hourly[index].weather[0].icon.substring(0, 2)}d@2x.png',
                   width: 32,
                   height: 32,
                 ),
                 const SizedBox(
                   height: 4,
                 ),
-                const Text(
-                  '-12°',
-                  style: TextStyle(
+                Text(
+                  '${hourly[index].temp.roundToNearestInt()}°',
+                  style: const TextStyle(
                     fontSize: 16,
                     color: AppColors.textColor,
                   ),
@@ -48,7 +56,7 @@ class DailyWeatherForecast extends StatelessWidget {
               ],
             ),
           ),
-          itemCount: 12,
+          itemCount: hourly.length,
         ),
       ),
     );

@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_app_flutter/data/repository_impl/city.repository_impl.dart';
-import 'package:weather_app_flutter/domain/model/city.model.dart';
+import 'package:weather_app_flutter/domain/model/city/city.model.dart';
 
-import '../../../../domain/usecase/get_cities.usecase.dart';
+import '../../../../domain/usecase/city/get_cities.usecase.dart';
 
 final cityListNotifierProvider =
     NotifierProvider<CityNotifier, AsyncValue<List<City>>>(() {

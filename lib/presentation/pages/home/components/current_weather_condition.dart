@@ -1,31 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/constant/app_colors.dart';
+import '../../../../core/utils/extensions.dart';
+import '../riverpod/weather_forecast_riverpod.dart';
 
 class CurrentWeatherCondition extends StatelessWidget {
-  const CurrentWeatherCondition({super.key});
+  final Map<int, String> weatherConditions;
+  final double? windGust;
+
+  const CurrentWeatherCondition({
+    super.key,
+    required this.weatherConditions,
+    required this.windGust,
+  });
 
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 1,
       child: GridView.builder(
-        physics: NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           mainAxisSpacing: 24,
           crossAxisSpacing: 24,
           childAspectRatio: 1,
         ),
-        itemBuilder: (_, index) => CurrentWeatherConditionItem(),
-        itemCount: 3,
+        itemBuilder: (_, index) => CurrentWeatherConditionItem(
+          index: index,
+          weatherConditions: weatherConditions,
+          windGust: windGust,
+        ),
+        itemCount: WeatherCondition.values.length,
       ),
     );
   }
 }
 
 class CurrentWeatherConditionItem extends StatelessWidget {
-  const CurrentWeatherConditionItem({super.key});
+  final int index;
+  final Map<int, String> weatherConditions;
+  final double? windGust;
+
+  const CurrentWeatherConditionItem({
+    super.key,
+    required this.index,
+    required this.weatherConditions,
+    required this.windGust,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,18 +64,23 @@ class CurrentWeatherConditionItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '습도',
-                style: TextStyle(fontSize: 16, color: AppColors.textColor),
+                WeatherCondition.values[index].getTitle,
+                style:
+                    const TextStyle(fontSize: 16, color: AppColors.textColor),
               ),
               Text(
-                '강풍: 3.39m/s',
-                style: TextStyle(fontSize: 16, color: AppColors.textColor),
+                index == 2 ? '강풍: ${windGust ?? 0}m/s' : '',
+                style:
+                    const TextStyle(fontSize: 16, color: AppColors.textColor),
               ),
             ],
           ),
           Container(
             alignment: Alignment.centerLeft,
-            child: Text('1.97m/s', style: TextStyle(fontSize: 32, color: AppColors.textColor),),
+            child: Text(
+              weatherConditions[index] ?? '',
+              style: const TextStyle(fontSize: 32, color: AppColors.textColor),
+            ),
           )
         ],
       ),
