@@ -1,29 +1,36 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../data/repository_impl/weather_forecase.repository_impl.dart';
+import '../../../../domain/model/city/city.model.dart';
 import '../../../../domain/model/weather_forecast/weather_forecast.model.dart';
 import '../../../../domain/usecase/weather_forecast/get_weather_forecast.usecase.dart';
 
-final weatherForcastNotifierProvider = NotifierProvider<WeatherForecastNotifier, AsyncValue<WeatherForecast>>(() {
+typedef WeatherForecastState = Map<String, WeatherForecast>;
+
+final weatherForcastNotifierProvider = NotifierProvider<WeatherForecastNotifier, AsyncValue<WeatherForecastState>>(() {
   return WeatherForecastNotifier();
 });
 
-class WeatherForecastNotifier extends Notifier<AsyncValue<WeatherForecast>> {
-  WeatherForecast? _weatherForecast;
+class WeatherForecastNotifier extends Notifier<AsyncValue<WeatherForecastState>> {
+  Coord? _coord;
+  String _cityName = '';
 
   @override
-  AsyncValue<WeatherForecast> build() {
-    _loadWeatherForecast();
+  AsyncValue<WeatherForecastState> build() {
+    _coord = Coord(lon: 34.19405, lat: 44.51298);
+    loadWeatherForecast(_coord!, _cityName);
     return const AsyncValue.loading();
   }
 
-  Future<void> _loadWeatherForecast() async {
+  Future<void> loadWeatherForecast(Coord coord, String cityName) async {
     try {
+      state = const AsyncValue.loading();
       final repository = WeatherForecastRepositoryImpl();
       final getWeatherForecastUsecase = GetWeatherForecastUsecase(repository);
 
-      _weatherForecast = await getWeatherForecastUsecase();
-      state = AsyncValue.data(_weatherForecast!);
+      final weatherForecast = await getWeatherForecastUsecase(coord);
+      this._cityName = cityName != '' ? cityName : weatherForecast.timezone.split('/')[1];
+      state = AsyncValue.data({this._cityName: weatherForecast});
     } catch (e, stack) {
       state = AsyncValue.error(e, stack);
     }
@@ -31,6 +38,6 @@ class WeatherForecastNotifier extends Notifier<AsyncValue<WeatherForecast>> {
 
   Future<void> retry() async {
     state = const AsyncValue.loading();
-    await _loadWeatherForecast();
+    await loadWeatherForecast(_coord!, _cityName);
   }
 }
