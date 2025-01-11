@@ -1,12 +1,23 @@
 import 'package:dio/dio.dart';
 
 class DioClient {
-  static Dio createDio() {
-    final dio = Dio(
-      BaseOptions(
-        contentType: "application/json",
-      ),
-    );
-    return dio;
-  }
+  final Dio _dio = Dio();
+
+  static final DioClient _instance = DioClient._internal();
+
+  Dio get getDio => _dio;
+
+  factory DioClient() => _instance;
+
+  DioClient._internal();
 }
+
+
+// Dio createDio() {
+//   final dio = Dio(
+//     BaseOptions(
+//       contentType: "application/json",
+//     ),
+//   );
+//   return dio;
+// }

@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weather_app_flutter/data/data_source/local/city_list.dao.dart';
 import 'package:weather_app_flutter/data/repository_impl/city.repository_impl.dart';
 import 'package:weather_app_flutter/domain/model/city/city.model.dart';
 
@@ -20,8 +21,10 @@ class CityNotifier extends Notifier<AsyncValue<List<City>>> {
 
   Future<void> _loadCities() async {
     try {
-      final repository = CityRepositoryImpl();
-      final getCitiesUsecase = GetCitiesUsecase(repository);
+      final cityListDao = CityListDao();
+      final repository = CityRepositoryImpl(cityListDao: cityListDao);
+      final getCitiesUsecase = GetCitiesUsecase();
+      final cityUcse
 
       _allCities = await getCitiesUsecase();
 
