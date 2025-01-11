@@ -6,9 +6,13 @@ import 'package:weather_app_flutter/domain/repository/city/city.repository.dart'
 import '../dto/local/city_list.dto.dart';
 
 class CityRepositoryImpl implements CityRepository {
+  final CityListDao cityListDao;
+
+  CityRepositoryImpl({required this.cityListDao});
+
   @override
   Future<List<City>> getCities() async {
-    final rawData = await CityListDao.loadCityList();
+    final rawData = await cityListDao.loadCityList();
 
     final dtoList = rawData.map((json) => CityDto.fromJson(json)).toList();
 

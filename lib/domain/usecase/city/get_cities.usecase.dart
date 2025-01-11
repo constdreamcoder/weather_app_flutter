@@ -1,13 +1,11 @@
-import 'package:weather_app_flutter/domain/repository/city/city.repository.dart';
-
 import '../../model/city/city.model.dart';
+import '../../repository/city/city.repository.dart';
+import '../base/local.usecase.dart';
 
-class GetCitiesUsecase {
-  final CityRepository repository;
+class GetCitiesUsecase extends LocalUsecase<CityRepository> {
 
-  GetCitiesUsecase(this.repository);
-
-  Future<List<City>> call() async {
+  @override
+  Future<List<City>> call(CityRepository repository) async {
     return await repository.getCities();
   }
 }
