@@ -9,15 +9,15 @@ import '../data_source/network/dio_client.dart';
 import '../data_source/remote/weather_forecast.api.dart';
 
 class WeatherForecastRepositoryImpl implements WeatherForecastRepository {
+  final WeatherForecastApi _weatherForecastApi;
+
+  WeatherForecastRepositoryImpl({required WeatherForecastApi weatherForecastApi}) : _weatherForecastApi = weatherForecastApi;
+
   @override
   Future<WeatherForecast> getWeatherForecast(Coord coord) async {
     String apiKey = dotenv.get('APIKey');
-    String baseURL = dotenv.get('baseURL');
 
-    final dioInstance = DioClient.createDio();
-    final weatherForecastApi = await WeatherForecastApi(dioInstance,
-        baseUrl: baseURL);
-    final weatherForecastDto = await weatherForecastApi.getWeatherForecast(
+    final weatherForecastDto = await _weatherForecastApi.getWeatherForecast(
       coord.lat,
       coord.lon,
       'minutely,alerts',

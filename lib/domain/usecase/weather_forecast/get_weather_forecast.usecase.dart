@@ -1,13 +1,15 @@
 import '../../model/city/city.model.dart';
 import '../../model/weather_forecast/weather_forecast.model.dart';
 import '../../repository/weather_forecast/weather_forecast.repository.dart';
+import '../base/remote.usecase.dart';
 
-class GetWeatherForecastUsecase {
-  final WeatherForecastRepository repository;
+class GetWeatherForecastUsecase extends RemoteUsecase<WeatherForecastRepository> {
+  final Coord coord;
 
-  GetWeatherForecastUsecase(this.repository);
+  GetWeatherForecastUsecase({required this.coord});
 
-  Future<WeatherForecast> call(Coord coord) async {
+  @override
+  Future<WeatherForecast> call(WeatherForecastRepository repository) async {
     return await repository.getWeatherForecast(coord);
   }
 }

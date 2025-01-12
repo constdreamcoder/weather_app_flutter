@@ -1,5 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:weather_app_flutter/data/data_source/network/dio_client.dart';
+import 'package:weather_app_flutter/data/data_source/remote/weather_forecast.api.dart';
+import 'package:weather_app_flutter/domain/usecase/weather_forecast/weather_forecast.usecase.dart';
 
 import '../../../../data/repository_impl/weather_forecase.repository_impl.dart';
 import '../../../../domain/model/city/city.model.dart';
@@ -9,12 +12,18 @@ import '../../../../domain/usecase/weather_forecast/get_weather_forecast.usecase
 typedef WeatherForecastState = Map<String, WeatherForecast>;
 
 final weatherForecastNotifierProvider = NotifierProvider<WeatherForecastNotifier, AsyncValue<WeatherForecastState>>(() {
-  return WeatherForecastNotifier();
+  final weatherForecastApi = WeatherForecastApi(DioClient().getDio);
+  final weatherForecastRepository = WeatherForecastRepositoryImpl(weatherForecastApi: weatherForecastApi);
+  final weatherForecastUsecase = WeatherForecastUsecase(weatherForecastRepository);
+  return WeatherForecastNotifier(weatherForecastUsecase: weatherForecastUsecase);
 });
 
 class WeatherForecastNotifier extends Notifier<AsyncValue<WeatherForecastState>> {
+  final WeatherForecastUsecase _weatherForecastUsecase;
   Coord _coord = Coord(lon: 0, lat: 0);
   String _cityName = '';
+
+  WeatherForecastNotifier({required WeatherForecastUsecase weatherForecastUsecase}) : _weatherForecastUsecase = weatherForecastUsecase;
 
   @override
   AsyncValue<WeatherForecastState> build() {
@@ -34,10 +43,9 @@ class WeatherForecastNotifier extends Notifier<AsyncValue<WeatherForecastState>>
     state = const AsyncValue.loading();
 
     try {
-      final repository = WeatherForecastRepositoryImpl();
-      final getWeatherForecastUsecase = GetWeatherForecastUsecase(repository);
+      final usecase = GetWeatherForecastUsecase(coord: coord);
+      final weatherForecast = await _weatherForecastUsecase.execute(usecase: usecase);
 
-      final weatherForecast = await getWeatherForecastUsecase(coord);
       _cityName = cityName != '' ? cityName : weatherForecast.timezone.split('/')[1];
       state = AsyncValue.data({_cityName: weatherForecast});
     } catch (e, stack) {
