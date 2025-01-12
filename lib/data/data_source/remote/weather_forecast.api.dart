@@ -7,7 +7,7 @@ part 'weather_forecast.api.g.dart';
 
 @RestApi()
 abstract class WeatherForecastApi {
-  factory WeatherForecastApi(Dio dio, {String? baseUrl}) = _WeatherForecastApi;
+  factory WeatherForecastApi(Dio dio) = _WeatherForecastApi;
 
   @GET('/onecall')
   Future<WeatherForecastDto> getWeatherForecast(

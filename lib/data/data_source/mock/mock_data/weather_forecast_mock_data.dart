@@ -1,6 +1,6 @@
 import 'package:weather_app_flutter/domain/model/city/city.model.dart';
 
-import '../../../domain/model/weather_forecast/weather_forecast.model.dart';
+import '../../../../domain/model/weather_forecast/weather_forecast.model.dart';
 
 class WeatherForecastMockData {
   static final mockCoord = Coord(lon: 37.7749, lat: -122.4194);

@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weather_app_flutter/data/data_source/network/dio_client.dart';
+import 'package:weather_app_flutter/data/data_source/remote/weather_forecast.api.dart';
 import 'package:weather_app_flutter/domain/usecase/weather_forecast/weather_forecast.usecase.dart';
 
 import '../../../../data/repository_impl/weather_forecase.repository_impl.dart';
@@ -11,8 +12,8 @@ import '../../../../domain/usecase/weather_forecast/get_weather_forecast.usecase
 typedef WeatherForecastState = Map<String, WeatherForecast>;
 
 final weatherForecastNotifierProvider = NotifierProvider<WeatherForecastNotifier, AsyncValue<WeatherForecastState>>(() {
-  final dioClient = DioClient();
-  final weatherForecastRepository = WeatherForecastRepositoryImpl(dioClient: dioClient);
+  final weatherForecastApi = WeatherForecastApi(DioClient().getDio);
+  final weatherForecastRepository = WeatherForecastRepositoryImpl(weatherForecastApi: weatherForecastApi);
   final weatherForecastUsecase = WeatherForecastUsecase(weatherForecastRepository);
   return WeatherForecastNotifier(weatherForecastUsecase: weatherForecastUsecase);
 });
