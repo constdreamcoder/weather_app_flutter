@@ -1,23 +1,23 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:weather_app_flutter/data/data_source/mock/weather_forecast_mock_data.dart';
-import 'package:weather_app_flutter/data/data_source/network/dio_client.dart';
+import 'package:weather_app_flutter/data/data_source/mock/mock_data/weather_forecast_mock_data.dart';
+import 'package:weather_app_flutter/data/data_source/remote/weather_forecast.api.dart';
 import 'package:weather_app_flutter/data/repository_impl/weather_forecase.repository_impl.dart';
 import 'package:weather_app_flutter/domain/repository/weather_forecast/weather_forecast.repository.dart';
 import 'package:weather_app_flutter/domain/usecase/weather_forecast/get_weather_forecast.usecase.dart';
 import 'package:weather_app_flutter/domain/usecase/weather_forecast/weather_forecast.usecase.dart';
 
-class MockDioClient extends Mock implements DioClient {}
+class MockWeatherForecastApi extends Mock implements WeatherForecastApi {}
 class MockGetWeatherForecastUsecase extends Mock implements GetWeatherForecastUsecase {}
 
 void main() {
-  late DioClient dioClient;
+  late WeatherForecastApi weatherForecastApi;
   late WeatherForecastRepository weatherForecastRepository;
   late WeatherForecastUsecase weatherForecastUsecase;
 
   setUpAll(() {
-    dioClient = MockDioClient();
-    weatherForecastRepository = WeatherForecastRepositoryImpl(dioClient: dioClient);
+    weatherForecastApi = MockWeatherForecastApi();
+    weatherForecastRepository = WeatherForecastRepositoryImpl(weatherForecastApi: weatherForecastApi);
     weatherForecastUsecase = WeatherForecastUsecase(weatherForecastRepository);
   });
 
