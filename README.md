@@ -1,4 +1,4 @@
-# 날씨라면 - 오늘의 일기 예보
+# 날씨라면 - 위치기반 도시별 날씨 정보 제공 앱
 
 <p>
     <img src="https://github.com/user-attachments/assets/575831ac-9c4d-4132-a6e3-0545dbe4ea52" align="center" width="100%"/>
@@ -8,16 +8,16 @@
 
 ## 날씨라면
 
-- 서비스 소개: 청년들을 위한 청년정책 정보 공유와 소통을 도와주는 커뮤니티 플랫폼
+- 서비스 소개:  사용자의 위치를 기반으로 한 날씨 정보와 도시별 상세 날씨 데이터를 제공하는 서비스
 - 개발 인원: 1인
 - 개발 기간: 25.01.06 ~ (진행중)
 - 개발 환경
-    - 최소버전: AOS 34, iOS 12
+    - 최소버전: AOS 14, iOS 12
 - 사용 툴
     - Figma, Git
 - 링크
     - 플레이 스토어 **(추가 예정)**
-    - 앱 스토어 **(추가 예정)**
+    - [앱 스토어](https://apps.apple.com/kr/app/%EB%82%A0%EC%94%A8%EB%9D%BC%EB%A9%B4/id6740342989)
 
 <br/>
 
@@ -43,7 +43,7 @@
 
 - Flutter
 - Riverpod, Clean Architecture
-- dio, retrofit, freezed
+- dio, retrofit, freezed, mocktail
 - BottomNavigationBar
 
 <br/>
